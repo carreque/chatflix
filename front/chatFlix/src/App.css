@@ -1,0 +1,30 @@
+body{
+  background-color: #2d3047 !important;
+}
+
+.box-shadow {
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.active{
+  text-decoration: none;
+ }
+
+ .active span{
+  color: black !important;
+ }
+
+.descriptionContainer{
+  text-align: justify;
+}
+#applicationLemotiv{
+  position: absolute;
+}
+
+#navbarChatFlix, #sidebarChatFlix{
+  background-color: #377771;
+}
+
+#navbarChatFlix span, #sidebarChatFlix span {
+  color: white;
+}
