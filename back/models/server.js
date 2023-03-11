@@ -12,7 +12,8 @@ class Server{
             auth: '/api/auth',
             users: '/api/user',
             genres: '/api/genre',
-            movies: '/api/movies'
+            movies: '/api/movies',
+            series: '/api/series'
         }
 
         this.connectToDB();
@@ -42,6 +43,7 @@ class Server{
         this.app.use(this.paths.users, require('../routers/users'));
         this.app.use(this.paths.genres, require('../routers/genres'));
         this.app.use(this.paths.movies, require('../routers/movies'));
+        this.app.use(this.paths.series, require('../routers/series'));
     }
 
     listen(){

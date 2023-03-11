@@ -1,5 +1,6 @@
 import { Grid, Pagination } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import { getFilterMovies } from '../../helpers'
 import { useGetMovies } from '../../hooks'
 import { MovieCard } from '../components/MovieCard'
 import { Navbar } from '../components/Navbar'
@@ -20,16 +21,13 @@ export const MoviesPage = () => {
   const handleChangePages = async (e) => {
 
     const fromMoviesIndex = (Number(e.target.innerText) - 1) * 6;
-    await getAllMovies(fromMoviesIndex, limitMovies);
+    genreSelected != '' ? await getFilterMovies(genreSelected, fromMoviesIndex , limitMovies) 
+                        : await getAllMovies(fromMoviesIndex, limitMovies);
   }
 
 
-  const filterMovies = () => {
-    console.log(genreSelected);
-    const moviesFiltered = movies.filter(movie => {
-      console.log({
-        movie})
-      return movie.genre.includes(genreSelected)});
+  const filterMovies = async () => {
+    const moviesFiltered = await getFilterMovies(genreSelected, 0 , limitMovies);
     setMovies(moviesFiltered);
   }
   //When the component is rendered for the first time,It will bring the first page movies 

@@ -10,13 +10,14 @@ body{
   text-decoration: none;
  }
 
- .active span{
+ .active span, .activeGenre{
   color: black !important;
  }
 
 .descriptionContainer{
   text-align: justify;
 }
+
 #applicationLemotiv{
   position: absolute;
 }
@@ -25,6 +26,6 @@ body{
   background-color: #377771;
 }
 
-#navbarChatFlix span, #sidebarChatFlix span {
+#navbarChatFlix span, #sidebarChatFlix span, .genreListOption {
   color: white;
 }

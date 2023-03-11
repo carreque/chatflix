@@ -25,7 +25,12 @@ export const GenreList = ({setGenreSelected}) => {
 
   const handleClickGenreSelected = (e) => {
     
-    setGenreSelected(e.target.getAttribute('data-name'));
+    const genreLiElements = document.querySelectorAll('[data-name]');
+    genreLiElements.forEach(li => li.classList.add('genreListOption'));
+    const targetDataName = e.target.getAttribute('data-name');
+    const genreElementSelected = document.querySelector(`[data-name='${targetDataName}']`);
+    genreElementSelected.classList.add('activeGenre');
+    setGenreSelected(targetDataName);
   }
   //It is going to be executed the first time that the componet is rendered
   useEffect(() => {
@@ -33,6 +38,6 @@ export const GenreList = ({setGenreSelected}) => {
   }, [])
   
   return (
-    genres?.map(genre => <li key={genre._id} data-name={genre._id} onClick={handleClickGenreSelected}>{genre.name}</li> )
+    genres?.map(genre => <li key={genre._id} data-name={genre._id} className='genreListOption' onClick={handleClickGenreSelected}>{genre.name}</li> )
   )
 }
