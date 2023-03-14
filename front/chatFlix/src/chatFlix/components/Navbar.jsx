@@ -1,11 +1,18 @@
 import { NavLink } from "react-router-dom";
-import { useAuthStore } from "../../hooks"
+import { useAuthStore, useGenreStore } from "../../hooks"
 
 
 export const Navbar = () => {
 
   const {startLogout, user} = useAuthStore();
-
+  const {changeGenreSelected} = useGenreStore();
+  const onHandleChangeType = (e) => {
+    const type = e.target.getAttribute('data-type');
+    changeGenreSelected({
+      id: '',
+      type
+    })
+  }
   return (
     <div className="navbar px-4" id="navbarChatFlix">
         <span className="navbar-brand">
@@ -19,11 +26,11 @@ export const Navbar = () => {
         <NavLink to="/room" className={({isActive}) => isActive ? 'text-decoration-none active': 'text-decoration-none'}>
           <span className="navbar-brand">Room</span>
         </NavLink>
-        <NavLink to="/series" className={({isActive}) => isActive ? 'text-decoration-none active': 'text-decoration-none'}>
-          <span className="navbar-brand">Series</span>
+        <NavLink to="/series" className={({isActive}) => isActive ? 'text-decoration-none active': 'text-decoration-none'}  onClick={onHandleChangeType}>
+          <span className="navbar-brand" data-type={'series'}>Series</span>
         </NavLink>
-        <NavLink  to="/" className={({isActive}) => isActive ? 'text-decoration-none active': 'text-decoration-none'}>
-          <span className="navbar-brand">Movies</span>
+        <NavLink  to="/" className={({isActive}) => isActive ? 'text-decoration-none active': 'text-decoration-none'}  onClick={onHandleChangeType}>
+          <span className="navbar-brand" data-type={'movies'}>Movies</span>
         </NavLink>
 
         <button 

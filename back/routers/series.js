@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const { check } = require('express-validator');
-const { createSerie } = require('../controllers');
+const { createSerie, getAllSeries, filterSeries } = require('../controllers');
 const { isValidArrayOfMongoIds, validateFields, validarJWT } = require('../middlewares');
 
 const router = Router();
@@ -16,4 +16,7 @@ router.post('/createSerie', [
     validarJWT
 ],createSerie);
 
+router.get('/getAllSeries/:from/:limit', validarJWT, getAllSeries);
+
+router.get('/getFilterSeries/:genreId/:from/:limit', validarJWT, filterSeries);
 module.exports = router;

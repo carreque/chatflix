@@ -1,7 +1,7 @@
 import { Grid, Pagination } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { getFilterMovies } from '../../helpers'
-import { useGetMovies } from '../../hooks'
+import { useGenreStore, useGetMovies } from '../../hooks'
 import { MovieCard } from '../components/MovieCard'
 import { Navbar } from '../components/Navbar'
 import { Sidebar } from '../components/Sidebar'
@@ -11,7 +11,7 @@ const limitMovies = 6;
 export const MoviesPage = () => {
 
   const [movies, setMovies] = useState([]);
-  const [genreSelected, setGenreSelected] = useState('');
+  const {id, type} = useGenreStore();
 
   const getAllMovies = async (from, limit) => {
     const moviesFound = await useGetMovies(from, limit);
@@ -21,13 +21,14 @@ export const MoviesPage = () => {
   const handleChangePages = async (e) => {
 
     const fromMoviesIndex = (Number(e.target.innerText) - 1) * 6;
-    genreSelected != '' ? await getFilterMovies(genreSelected, fromMoviesIndex , limitMovies) 
+    id != '' && type == 'movies' ? await getFilterMovies(id, fromMoviesIndex , limitMovies) 
                         : await getAllMovies(fromMoviesIndex, limitMovies);
   }
 
 
   const filterMovies = async () => {
-    const moviesFiltered = await getFilterMovies(genreSelected, 0 , limitMovies);
+    if (type !== 'movies') return;
+    const moviesFiltered = await getFilterMovies(id, 0 , limitMovies);
     setMovies(moviesFiltered);
   }
   //When the component is rendered for the first time,It will bring the first page movies 
@@ -37,21 +38,20 @@ export const MoviesPage = () => {
   
   useEffect(() => {
     filterMovies()  
-  }, [genreSelected])
+  }, [id])
   
   return (
     <>
       <Navbar/>
       <Grid container sx={{'display': 'flex'}}>
         <Grid container item sm={2} xs={0} sx={{minHeight: '94.2vh'}}>
-            <Sidebar setGenreSelected={setGenreSelected}/>
+            {/* <Sidebar setGenreSelected={setGenreSelected}/> */}
+            <Sidebar/>
         </Grid>
         <Grid container item sm={10} xs={0} sx={{'padding': '30px'}}>
           {
             
-            movies?.map(movie => {
-              return <MovieCard key={movie.name} Movie={movie}/>
-            })
+            movies?.map(movie => <MovieCard key={movie.name} Movie={movie}/>)
           }
 
           <Grid container item sm={10} className="justify-content-center mt-3">

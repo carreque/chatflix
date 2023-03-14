@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useGenre } from "../../hooks"
+import { useGenre, useGenreStore } from "../../hooks"
 
-export const GenreList = ({setGenreSelected}) => {
+export const GenreList = () => {
   
   const [genres, setGenres] = useState([]);
+  const {type, changeGenreSelected} = useGenreStore();
   /*
   One way to do it
 
@@ -30,7 +31,10 @@ export const GenreList = ({setGenreSelected}) => {
     const targetDataName = e.target.getAttribute('data-name');
     const genreElementSelected = document.querySelector(`[data-name='${targetDataName}']`);
     genreElementSelected.classList.add('activeGenre');
-    setGenreSelected(targetDataName);
+    changeGenreSelected({
+      id: targetDataName,
+      type
+    })
   }
   //It is going to be executed the first time that the componet is rendered
   useEffect(() => {

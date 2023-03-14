@@ -16,11 +16,9 @@ const createNewUser = async (req = request, res = response) => {
             ...rest
         });
 
-        //console.log("\nUsuario creado\n");
-        //console.log(rest);
+        
         await usuario.save();
         const token = await generateJWT(usuario.id);
-        //console.log("\nUsuario creado222\n");
         res.status(200).json({
             msg: 'User created succesfully',
             name: usuario.name,

@@ -25,7 +25,7 @@ const getAllMovies = async (req = request, res = response) => {
 
     try{
         const {from = 0, limit = 6} = req.params;
-        const movies = await Movie.find()
+        const movies = await Movie.find({state: true})
                                   .skip(from)
                                   .limit(Number(limit));
 
@@ -52,7 +52,7 @@ const filterMovieByGenre = async(req = request, res = response) => {
     try{
 
         const {genreid, from = 0, limit = 6} = req.params;
-        const movies = await Movie.find({genre: {$in: [genreid]}}) //Para comprobar que existe un id dentro del array de géneros
+        const movies = await Movie.find({state:true, genre: {$in: [genreid]}}) //Para comprobar que existe un id dentro del array de géneros
                                    .skip(from)
                                    .limit(Number(limit))
         if (!movies){

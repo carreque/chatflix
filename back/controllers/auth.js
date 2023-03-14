@@ -6,7 +6,6 @@ const { generateJWT } = require('../helpers');
 const login = async (req = request, res = response) => {
 
     const {email, password} = req.body;
-    console.log('ENTRAMOS');
     try{
         const user = await Usuario.findOne({email});
 
