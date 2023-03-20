@@ -26,6 +26,12 @@ export const GenreList = () => {
 
   const handleClickGenreSelected = (e) => {
     
+    //First it checks if exists an active genre
+    const elementActive = document.querySelector('.activeGenre');
+    if(elementActive){
+      console.log(elementActive);
+      elementActive.classList.remove('activeGenre');
+    }
     const genreLiElements = document.querySelectorAll('[data-name]');
     genreLiElements.forEach(li => li.classList.add('genreListOption'));
     const targetDataName = e.target.getAttribute('data-name');
