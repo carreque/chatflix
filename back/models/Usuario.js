@@ -39,7 +39,8 @@ const UsuarioSchema = Schema({
     phoneNumber:{
         type: Number,
         default: 0
-    }
+    },
+
 });
 
 module.exports = model('Usuario', UsuarioSchema);

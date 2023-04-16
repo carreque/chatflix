@@ -1,6 +1,6 @@
-const { Server } = require("./models");
+const { ServerChatflix } = require("./models");
 
-const chatFlixserver = new Server();
+const chatFlixserver = new ServerChatflix();
 
 chatFlixserver.listen();
 

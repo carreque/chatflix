@@ -71,7 +71,7 @@ const getNamesGenresFromAnArray = async (req = request, res = response) => {
         
         if(typeof genre === 'string') genre = JSON.parse(genre)
         //In order to bring genres name from database, is necessary to launch a group of promises
-        genresArrayObjects = await Promise.all(
+        const genresArrayObjects = await Promise.all(
             genre.map(async genreId => {
                 const genreFound = await Genre.findById(genreId);
                 return genreFound.name;

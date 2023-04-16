@@ -20,9 +20,6 @@ export const Navbar = () => {
             &nbsp;
             Welcome { user.name }
         </span>
-        <NavLink to="/chat" className={({isActive}) => isActive ? 'text-decoration-none active': 'text-decoration-none'}>
-          <span className="navbar-brand">Chat</span>
-        </NavLink>
         <NavLink to="/room" className={({isActive}) => isActive ? 'text-decoration-none active': 'text-decoration-none'}>
           <span className="navbar-brand">Room</span>
         </NavLink>

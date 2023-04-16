@@ -22,10 +22,15 @@ body{
   position: absolute;
 }
 
-#navbarChatFlix, #sidebarChatFlix{
+#navbarChatFlix, #sidebarChatFlix {
   background-color: #377771;
 }
 
+.messageDiv{
+  background-color: #377771;
+  height: 5%;
+  margin: 10px;
+}
 #navbarChatFlix span, #sidebarChatFlix span, .genreListOption {
   color: white;
 }

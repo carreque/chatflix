@@ -5,9 +5,10 @@ const isValidArrayOfMongoIds = (req = request, res = response, next) => {
 
     try{
 
-        let {genre} = req.body;
-        if (typeof genre === 'string') genre = JSON.parse(genre); 
-        const numberGenresUnknown = genre?.filter(genr => !isValidObjectId(genr))
+        const { genre = undefined, members = undefined} = req.body;
+        let arrayElements = genre !== undefined ? genre : members;
+        if (typeof arrayElements === 'string') arrayElements = JSON.parse(arrayElements); 
+        const numberGenresUnknown = arrayElements?.filter(genr => !isValidObjectId(genr))
 
         if(numberGenresUnknown.length){
             return res.status(400).json({

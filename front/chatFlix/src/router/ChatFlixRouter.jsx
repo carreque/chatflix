@@ -1,21 +1,23 @@
 import { useEffect } from 'react';
 import {Navigate, Route,Routes} from 'react-router-dom';
+import  io  from 'socket.io-client';
 import { AuthRoutes } from '../auth/routes/AuthRoutes';
 import { ChatPage } from '../chatFlix/pages/ChatPage';
 import { MoviesPage } from '../chatFlix/pages/MoviesPage';
 import { RoomPage } from '../chatFlix/pages/RoomPage';
 import { SeriesPage } from '../chatFlix/pages/SeriesPage';
 import { useAuthStore } from '../hooks';
+import { useSocketStore } from '../hooks/useSocketStore';
 
 export const ChatFlixRouter = () => {
 
   const {status, checkAuthToken} = useAuthStore();
-
+  
   //When the component is rendered for the first time, it is going to check on the jwt token and ask for a new one if it is necessary. 
   useEffect(() => {
     checkAuthToken();
   }, [])
-  
+    
   return (
     <Routes>
       {
@@ -34,7 +36,7 @@ export const ChatFlixRouter = () => {
             <Route path="/*" element={ <Navigate to="/" /> } />
             <Route path="/series" element={<SeriesPage/>}/>
             <Route path="/room" element={<RoomPage/>}/>
-            <Route path="/chat" element={<ChatPage/>}/>
+            <Route path="/chat/:id" element={<ChatPage/>}/>
           </>
         )
       }

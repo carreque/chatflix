@@ -5,3 +5,6 @@ export * from './useGetGenresFromArray';
 export * from './useGetMovies';
 export * from './useGetSeries';
 export * from './useGenreStore';
+export * from './useGetAllRooms';
+export * from './useNewMember';
+export * from './useGetAllMessages';
